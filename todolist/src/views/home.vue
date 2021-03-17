@@ -1,5 +1,6 @@
 <template>
 
+
 <ul>
 
 <li v-for="todo in filterTodos" :key="todo.id">
@@ -21,12 +22,9 @@ Nombres de tâches restantes : {{ numberTodosDone }}
 </template>
 
 <script>
-
-
 export default ({
 name: 'Home',
 components: {
-
 },
 data() {
 return {
@@ -59,25 +57,19 @@ todos: [
 }
 },
 methods: {
-
   colorForTodo(todo){
-
     if(todo.completed == true){
       return "color:green";
     }
     else{
       return "color:red";
     }
-
   },
-
   suppTodo(todo){
-
     console.log(todo.name);
     const index = this.todos.indexOf(todo);
     console.log(this.todos.splice(index,1));
     
-
   }
 },
 computed: {
@@ -95,9 +87,7 @@ filterTodos(){
     console.log("salt");
     return this.todos.filter((todo)=> todo.completed == false);
   },
-
   numberTodosDone(){
-
     let cpt = 0;
     for (let i = 0; i < this.todos.length; i++) {     
       if(this.todos[i].completed == false){
@@ -107,7 +97,6 @@ filterTodos(){
   return cpt;
   }
 }
-
 });
 </script>
 
