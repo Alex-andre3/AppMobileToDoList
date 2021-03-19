@@ -12,7 +12,6 @@
 
 </ul>  
 
-
 Nombres de tâches restantes : {{ numberTodosDone }}
 <button v-on:click="filter ='all'">Toutes</button>
 <button v-on:click="filter ='todo'">A faire</button>
@@ -22,40 +21,44 @@ Nombres de tâches restantes : {{ numberTodosDone }}
 </template>
 
 <script>
+
 export default ({
 name: 'Home',
 components: {
 },
-data() {
-return {
-counter: 0,
-todos: [
-        {
-          id: 1,
-          name: 'Faire la vaisselle',
-          completed : false 
-        },
-        {
-          id: 2,
-          name : 'Aller manger',
-          completed: true
-        },
-        {
-          id: 3,
-          name : 'Casser une télé',
-          completed: true
-        },
-        {
-          id: 4,
-          name : 'Courir car c\'est bon pour la santé',
-          completed: false
-        }
-      ],
-      newTodo: '',
-      filter: 'all',
-      allChecked: 'false'
-}
+data (){
+  return {
+    allChecked: 'false',
+    newTodo: '',
+    counter: 0,
+    todos: [
+              {
+                id: 1,
+                name: 'Faire la vaisselle',
+                completed : false 
+              },
+              {
+                id: 2,
+                name : 'Aller manger',
+                completed: true
+              },
+              {
+                id: 3,
+                name : 'Casser une télé',
+                completed: true
+              },
+              {
+                id: 4,
+                name : 'Courir car c\'est bon pour la santé',
+                completed: false
+              }
+            ],
+            
+            filter: 'all',
+
+  }
 },
+
 methods: {
   colorForTodo(todo){
     if(todo.completed == true){
@@ -73,6 +76,9 @@ methods: {
   }
 },
 computed: {
+  
+
+
 filterTodos(){
   console.log(this.filter);
     return this[this.filter];

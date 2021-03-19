@@ -7,3 +7,25 @@ export function addTodo(state, data) {
 
     })
 }
+
+export function INCREMENT(state){
+    state.count += 1;
+}
+
+export function DECREMENT(state){
+    state.count--;
+}
+
+
+// export function COLORFORTODO(state){
+//     if(state.todo.completed == true){
+//         return "color:green";
+//                         }
+//     else{
+//         return "color:red";
+// }
+// }
+
+// export function SUPPTODO(state,index){
+//     state.todos.splice(index,1)
+// }
