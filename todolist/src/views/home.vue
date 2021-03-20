@@ -1,6 +1,6 @@
 <template>
 <div>
-  
+
   <div>
     <ul>
     <li v-for="todo in filterTodos" :key="todo.id">
@@ -25,12 +25,6 @@
   </div>
 
 </div>
-
-
-
-
-
-
 </template>
 
 <script>

@@ -1,14 +1,16 @@
 <template>
 <div>
-  <div class="login">
-    <h1>Login</h1>
+  <div class="register">
+    <h1>Register</h1>
   </div>
   <div>
     <label for="user">Nom d'utilisateur  : </label>
     <input type="text" name="user" v-model="user">
+    <label for="email">E-mail : </label>
+    <input type="text" name="email" v-model="email">
     <label for="password">Mot de passe : </label>
     <input type="text" name="password" v-model="password">
-    <button v-on:click="register">Se connecter</button>
+    <button v-on:click="register">Créer</button>
   </div>
 </div>
 </template>
@@ -17,9 +19,9 @@
 
 import { mapActions} from 'vuex'
 export default ({
-    name:"login",
+    name:"register",
     methods: {
-        ...mapActions("account",['login']),
+        ...mapActions("account",['register']),
     },
     computed: {
 

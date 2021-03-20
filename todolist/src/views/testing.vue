@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="testing">
-      <h1>This is an testing page</h1>
+      <h1>This is a testing page</h1>
     </div>
     <p> {{count}}</p>
     <p>
