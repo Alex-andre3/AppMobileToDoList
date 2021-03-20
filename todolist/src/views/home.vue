@@ -1,21 +1,34 @@
 <template>
+<div>
+  
+  <div>
+    <ul>
+    <li v-for="todo in filterTodos" :key="todo.id">
+      <input type="checkbox" v-model="todo.completed" color="dark">
+      <label v-bind:style="colorForTodo(todo)"> {{todo.name}} , La tâche est complété : {{todo.completed}}</label>
+      <button v-on:click="suppTodo(todo)" >Supprimer la tâche</button>
+    </li>
+  </ul>
+  </div>
+
+  <div>
+    <p> Nombres de tâches restantes : {{ numberTodosDone }} </p>
+    <button v-on:click="filter ='all'">Toutes</button>
+    <button v-on:click="filter ='todo'">A faire</button>
+    <button v-on:click="filter ='done'">Accomplies</button>
+  </div>
+
+  <div>
+    <label for="newTodoName">Nouvelle tâche : </label>
+    <input type="text" name="newTodoName" v-model="newTodoName">
+    <button v-on:click="createNewTodo">Créer</button>
+  </div>
+
+</div>
 
 
-<ul>
 
-<li v-for="todo in filterTodos" :key="todo.id">
 
-  <input type="checkbox" v-model="todo.completed" color="dark">
-  <label v-bind:style="colorForTodo(todo)"> {{todo.name}} , La tâche est complété : {{todo.completed}}</label>
-  <button v-on:click="suppTodo(todo)" >Supprimer la tâche</button>
-</li>
-
-</ul>  
-
-Nombres de tâches restantes : {{ numberTodosDone }}
-<button v-on:click="filter ='all'">Toutes</button>
-<button v-on:click="filter ='todo'">A faire</button>
-<button v-on:click="filter ='done'">Accomplis</button>
 
 
 </template>
@@ -29,8 +42,9 @@ components: {
 data (){
   return {
     allChecked: 'false',
-    newTodo: '',
+    newTodoName: '',
     counter: 0,
+    id: 4,
     todos: [
               {
                 id: 1,
@@ -72,7 +86,16 @@ methods: {
     console.log(todo.name);
     const index = this.todos.indexOf(todo);
     console.log(this.todos.splice(index,1));
-    
+    this.id --;
+  },
+  createNewTodo(){
+    this.id ++;
+    this.todos.push({
+      id: this.id,
+      name: this.newTodoName,
+      completed: false
+    });
+    this.newTodoName = '';
   }
 },
 computed: {

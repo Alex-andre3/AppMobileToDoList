@@ -1,5 +1,5 @@
 <template>
-    <h1>Listes</h1>
+    <!-- <h1>Listes</h1> -->
     <ul>
         <li v-for="todolist in getTodoLists" v-bind:key="todolist.id">
             <sidebarItem :todolist="todolist" v-on:click="selectList(todolist.id)"/>
