@@ -1,5 +1,5 @@
 <template>
-    <p> {{todolist.name}} ( {{remainingTodosByList(todolist.id)}})</p>
+    <p> - {{todolist.name}} ( Nombre de tâche restantes à faire : {{remainingTodosByList(todolist.id)}})</p>
     <!-- <p>Coucou toi {{todolist.todos}} </p> -->
 </template>
 

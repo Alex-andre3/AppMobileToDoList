@@ -14,6 +14,11 @@ export function load({ commit }){
 //     context.commit('SUPPTODO',todo,id)
 // }
 
-// export function createTodolist(context){
+export function createTodolist(context,name){
+        context.commit('CREATETODOLIST',name)
+}
 
-// }
+export function createTodo(context,id,name){
+    console.log("name =",name)
+    context.commit('CREATETODO',id,name)
+}

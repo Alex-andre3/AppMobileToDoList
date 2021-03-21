@@ -1,14 +1,21 @@
 <template>
 <div>
 
-    <ul>
-        <li v-for="todolist in getTodoLists" v-bind:key="todolist.id">
-            <sidebarItem :todolist="todolist" v-on:click='changeTodos(todolist)'/>
-            
-        </li>
-    </ul>
+    
+      <div v-for="todolist in getTodoLists" v-bind:key="todolist.id">
+          <sidebarItem :todolist="todolist" v-on:click='changeTodos(todolist)'/>       
+      </div>
 
+      <div>
+        <label for="newTodoList">Nouvelle Liste : </label>
+        <input type="text" name="newTodoList" v-model="newTodoList" @keyup.enter="createTodolist(newTodoList)">
+         <!--  -->
+        <button v-on:click="createTodolist(newTodoList)" >Créer une nouvelle liste</button>
+      </div>
+      
 
+    <div class="test">
+      <h1>{{currentTodolists.name}}</h1>
     <ul>
         <li v-for="todo in currentTodos" :key="todo.id">   
                 <input type="checkbox" v-model="todo.completed">
@@ -16,16 +23,20 @@
                 <button v-on:click="suppTodo(todo)" >Supprimer la tâche</button>
         </li>
     </ul>
+    <!-- pourquoi pas utiliser ici une fonction de vuejs pour afficher que si currentTodolists n'est pas vide -->
 
-     <div>
-   
+      
+    <label for="newTodoName">Nouvelle tâche : </label>
+    <input type="text" name="newTodoName" v-model="newTodoName">
+    <button v-on:click="createTodo(currentTodolists.id,newTodoName)">Créer</button>
+    <br>
+    <div class="afficheOrNot" v-if="currentTodos != ''">
     <button v-on:click="filter ='all'">Toutes</button>
     <button v-on:click="filter ='todo'">A faire</button>
     <button v-on:click="filter ='done'">Accomplies</button>
-  </div>
+      </div>
+    </div>
     
-    <button> Créer une nouvelle liste</button>
-
 </div>
 </template>
 
@@ -39,11 +50,13 @@ export default {
     data (){
         return {
             currentTodolists : [],
+            newTodoList: '',
+            newTodoName: ''
             
         }
     },
     methods:{
-        ...mapActions("todolist",["createTodolist"]),
+        ...mapActions("todolist",["createTodolist","createTodo"]),
 
         changeTodos(todolist){
             console.log(todolist.name)
@@ -72,11 +85,8 @@ export default {
       completed: false
     });
     this.newTodoName = '';
-  }
-        // selectList(id){
-        //     console.log("click");
-        //     this.$emit("change-selected-list",id)
-        // }
+  },
+ 
     },
     computed:{
         ...mapGetters('todolist',["getTodoLists","getListByID"]),
@@ -111,3 +121,9 @@ export default {
 }
 
 </script>
+
+<style>
+.test{
+  text-align: center;
+}
+</style>
