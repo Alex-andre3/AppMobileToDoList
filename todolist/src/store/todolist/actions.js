@@ -8,19 +8,12 @@ export function load({ commit }){
 
 }
 
-export function increment (context){
-    context.commit('INCREMENT')
-}
 
-export function decrement (context){
-    context.commit('DECREMENT')
-}
+// export function suppTodo(context,todo,id){
+    
+//     context.commit('SUPPTODO',todo,id)
+// }
 
-export function colorForTodo(context){
-    console.log("on va jusqu'ici chackal");
-    context.commit('COLORFORTODO')
-}
+// export function createTodolist(context){
 
-export function suppTodo(context){
-    context.commit('SUPPTODO')
-}
+// }

@@ -1,5 +1,5 @@
 
-export function getTodolists  (state)  {
+export function getTodoLists  (state)  {
     return state.todoLists;
 }
 
@@ -10,19 +10,20 @@ export const remainingTodosByList = (state) => (id) => {
 
 }
 
-export const remainingTodos = (state) => {
-    var i = 0;
-    state.todoLists.forEach(list => {
-        console.log(list.name)
-        i = i+ list.todos.filter(todo => !todo.completed).length
-    });
-    return i
+// export const remainingTodos = (state) => {
+//     var i = 0;
+//     state.todoLists.forEach(list => {
+//         console.log(list.name)
+//         i = i+ list.todos.filter(todo => !todo.completed).length
+//     });
+//     return i
 
-}
+// }
 
-export const getListByID = (state) => (id) => {
+// export const getListByID = (state) => (id) => {
+//     console.log(id);
+//     console.log("on vient ici", state.todoLists.find((todoList) => todoList.id ===id), id);
+//     return state.todoLists.find((todoList) => todoList.id ===id);
 
-    return state.todoLists.find((todoList) => todoList.id ===id);
-
-}
+// }
 

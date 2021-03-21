@@ -1,5 +1,6 @@
 <template>
     <p> {{todolist.name}} ( {{remainingTodosByList(todolist.id)}})</p>
+    <!-- <p>Coucou toi {{todolist.todos}} </p> -->
 </template>
 
 <script>

@@ -8,24 +8,16 @@ export function addTodo(state, data) {
     })
 }
 
-export function INCREMENT(state){
-    state.count += 1;
-}
+// export function SUPPTODO(state,todo,id){
+//     console.log("on vient cii id=",id)
+    
+//     const index  = state.todoLists[todo].indexOf(id);
 
-export function DECREMENT(state){
-    state.count--;
-}
-
-
-// export function COLORFORTODO(state){
-//     if(state.todo.completed == true){
-//         return "color:green";
-//                         }
-//     else{
-//         return "color:red";
-// }
+//     console.log("index =",index);
+    
+    
+//     // console.log("index=", index);
+//     // console.log(state.todoLists[0].todos.name);
+//     state.todoLists[id].todos.splice(index,1)
 // }
 
-// export function SUPPTODO(state,index){
-//     state.todos.splice(index,1)
-// }
