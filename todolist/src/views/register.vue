@@ -20,6 +20,13 @@
 import { mapActions} from 'vuex'
 export default ({
     name:"register",
+    data() {
+      return{
+        user: '',
+        email: '',
+        password: ''
+      }
+    },
     methods: {
         ...mapActions("account",['register']),
     },
