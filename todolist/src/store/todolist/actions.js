@@ -18,7 +18,11 @@ export function createTodolist(context,name){
         context.commit('CREATETODOLIST',name)
 }
 
-export function createTodo(context,id,name){
-    console.log("name =",name)
-    context.commit('CREATETODO',id,name)
+export function createTodo(context,[id,name]){
+    
+    context.commit('CREATETODO',[id,name])
+}
+
+export function deleteTodo(context,[todoListsId,name]){
+    context.commit('DELETETODO',[todoListsId,name])
 }

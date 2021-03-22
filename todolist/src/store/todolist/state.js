@@ -2,6 +2,7 @@ export default function () {
     return {
       
       count:2,
+      countTodo:5,
       filter:"all",
       todoLists: [
         {
@@ -33,7 +34,13 @@ export default function () {
           id: 4,
           name : 'Courir car c\'est bon pour la santé',
           completed: false
-        }]}
+        },
+        {
+          id:5,
+          name:"regarder dehors",
+          completed:false
+        }
+        ]}
       ]
             
     }

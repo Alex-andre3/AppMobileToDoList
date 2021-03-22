@@ -19,16 +19,16 @@
     <ul>
         <li v-for="todo in currentTodos" :key="todo.id">   
                 <input type="checkbox" v-model="todo.completed">
-                <label v-bind:style="colorForTodo(todo)"> {{todo.name}} , La tâche est complété : {{todo.completed}}</label>
-                <button v-on:click="suppTodo(todo)" >Supprimer la tâche</button>
+                <label v-bind:style="colorForTodo(todo)"> {{todo.name}} , La tâche est complété : {{todo.completed}}, {{todo.id}}</label>
+                <button v-on:click="deleteTodo([currentTodolists.id,todo.name])" >Supprimer la tâche</button>
         </li>
     </ul>
     <!-- pourquoi pas utiliser ici une fonction de vuejs pour afficher que si currentTodolists n'est pas vide -->
 
       
     <label for="newTodoName">Nouvelle tâche : </label>
-    <input type="text" name="newTodoName" v-model="newTodoName">
-    <button v-on:click="createTodo(currentTodolists.id,newTodoName)">Créer</button>
+    <input type="text" name="newTodoName" v-model="newTodoName" @keyup.enter="createTodo([currentTodolists.id,newTodoName])">
+    <button v-on:click="createTodo([currentTodolists.id,newTodoName])">Créer</button>
     <br>
     <div class="afficheOrNot" v-if="currentTodos != ''">
     <button v-on:click="filter ='all'">Toutes</button>
@@ -51,12 +51,12 @@ export default {
         return {
             currentTodolists : [],
             newTodoList: '',
-            newTodoName: ''
+            newTodoName: '',
             
         }
     },
     methods:{
-        ...mapActions("todolist",["createTodolist","createTodo"]),
+        ...mapActions("todolist",["createTodolist","createTodo","deleteTodo"]),
 
         changeTodos(todolist){
             console.log(todolist.name)
@@ -77,15 +77,15 @@ export default {
 //     console.log(this.currentTodolists.splice(index,1));
 //     this.id --;
 //   },
-  createNewTodo(){
-    this.id ++;
-    this.todos.push({
-      id: this.id,
-      name: this.newTodoName,
-      completed: false
-    });
-    this.newTodoName = '';
-  },
+  // createNewTodo(){
+  //   this.id ++;
+  //   this.todos.push({
+  //     id: this.id,
+  //     name: this.newTodoName,
+  //     completed: false
+  //   });
+  //   this.newTodoName = '';
+  // },
  
     },
     computed:{
