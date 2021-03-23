@@ -1,9 +1,8 @@
 export default function () {
     return {
       
-      count:2,
-      countTodo:5,
-      filter:"all",
+      count:2,//Nombre de TodoLists
+      countTodoForId:5, //Pour attribuer un id à une nouvelle todo
       todoLists: [
         {
           id:1,

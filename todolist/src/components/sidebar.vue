@@ -1,7 +1,5 @@
 <template>
-<div>
-
-    
+<div> 
       <div v-for="todolist in getTodoLists" v-bind:key="todolist.id">
           <sidebarItem :todolist="todolist" v-on:click='changeTodos(todolist)'/>       
       </div>
@@ -9,7 +7,6 @@
       <div>
         <label for="newTodoList">Nouvelle Liste : </label>
         <input type="text" name="newTodoList" v-model="newTodoList" @keyup.enter="createTodolist(newTodoList)">
-         <!--  -->
         <button v-on:click="createTodolist(newTodoList)" >Créer une nouvelle liste</button>
       </div>
       
@@ -17,13 +14,12 @@
     <div class="test">
       <h1>{{currentTodolists.name}}</h1>
     <ul>
-        <li v-for="todo in currentTodos" :key="todo.id">   
+        <li v-for="todo in filterTodos" :key="todo.id">   
                 <input type="checkbox" v-model="todo.completed">
-                <label v-bind:style="colorForTodo(todo)"> {{todo.name}} , La tâche est complété : {{todo.completed}}, {{todo.id}}</label>
-                <button v-on:click="deleteTodo([currentTodolists.id,todo.name])" >Supprimer la tâche</button>
+                <label v-bind:style="colorForTodo(todo)"> {{todo.name}} , La tâche est complété : {{todo.completed}}, {{todo.id}} </label>
+                <button v-on:click="deleteTodo([currentTodolists.id,todo])" >Supprimer la tâche</button>
         </li>
     </ul>
-    <!-- pourquoi pas utiliser ici une fonction de vuejs pour afficher que si currentTodolists n'est pas vide -->
 
       
     <label for="newTodoName">Nouvelle tâche : </label>
@@ -52,6 +48,7 @@ export default {
             currentTodolists : [],
             newTodoList: '',
             newTodoName: '',
+            filter: 'all'
             
         }
     },
@@ -59,9 +56,7 @@ export default {
         ...mapActions("todolist",["createTodolist","createTodo","deleteTodo"]),
 
         changeTodos(todolist){
-            console.log(todolist.name)
             this.currentTodolists = todolist;
-            console.log(this.currentTodolists)
         },
         colorForTodo(todo){
             if(todo.completed == true){
@@ -70,52 +65,29 @@ export default {
             else{
             return "color:red";
             }
+
   },
-//   suppTodo(todo){
-//     console.log("la todo s'appelle ",todo.name);
-//     const index = this.currentTodolists.indexOf(todo);
-//     console.log(this.currentTodolists.splice(index,1));
-//     this.id --;
-//   },
-  // createNewTodo(){
-  //   this.id ++;
-  //   this.todos.push({
-  //     id: this.id,
-  //     name: this.newTodoName,
-  //     completed: false
-  //   });
-  //   this.newTodoName = '';
-  // },
- 
+      
     },
     computed:{
-        ...mapGetters('todolist',["getTodoLists","getListByID"]),
+        ...mapGetters('todolist',["getTodoLists"]),
         filterTodos(){
             console.log(this.filter);
                 return this[this.filter];
-  },
-  all(){
-    return this.currentTodolists;
-  },
-  done(){
-    return this.currentTodolists.filter((todo)=> todo.completed == true);
-  },
-  todo(){
-    console.log("salt");
-    return this.currentTodolists.filter((todo)=> todo.completed == false);
-  },
-  numberTodosDone(){
-    let cpt = 0;
-    for (let i = 0; i < this.currentTodolists.length; i++) {     
-      if(this.currentTodolists[i].completed == false){
-        cpt++;
-      }    
-  }
-  return cpt;
-  },
-  currentTodos(){
-      return this.currentTodolists.todos;
-  }
+        },
+        all(){
+          return this.currentTodolists.todos;
+        },
+        done(){
+          return this.currentTodolists.todos.filter((todo)=> todo.completed == true);
+        },
+        todo(){
+          return this.currentTodolists.todos.filter((todo)=> todo.completed == false);
+        },
+
+        currentTodos(){
+            return this.currentTodolists.todos;
+        }
     },
     
 }
@@ -125,5 +97,8 @@ export default {
 <style>
 .test{
   text-align: center;
+}
+li {
+  list-style: none;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
 <div>
-    <div class="testing">
-      <h1>This is an testing page</h1>
+    <div class="todolist">
+      <h1>Votre page avec vos Todolists</h1>
     </div>
 
   <sidebar />
@@ -13,7 +13,7 @@
 import sidebar from "../components/sidebar";
 import { mapActions, mapState, mapGetters} from 'vuex'
 export default ({
-    name:"testing",
+    name:"todolist",
     components: {sidebar},
     methods: {
         ...mapActions("todolist",['increment','decrement','suppTodo']),
